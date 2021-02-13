@@ -1,0 +1,23 @@
+{
+  "name": "NodeJS__TODO-Console-App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisureza/NodeJS__TODO-Console-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisureza/NodeJS__TODO-Console-App/issues"
+  },
+  "homepage": "https://github.com/chrisureza/NodeJS__TODO-Console-App#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
