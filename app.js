@@ -5,12 +5,16 @@ const {
     pause,
     readInput,
 } = require('./helpers/inquirer');
+const { saveData, readData } = require('./helpers/dataInteractions');
 const Tasks = require('./models/tasks');
 
 
 const main = async () => {
     let opt = '';
     const tasks = new Tasks();
+
+    const tasksData = readData();
+    if (tasksData) tasks.loadTasksFromArray(tasksData);
 
     do {
         opt = await inquirerMenu();
@@ -22,9 +26,11 @@ const main = async () => {
                 console.log('Task added'.green);
                 break;
             case '2':
-                console.log(tasks._tasksList);
+                console.log(tasks.getTasksList);
                 break;
         }
+
+        saveData(JSON.stringify(tasks.getTasksList));
 
         opt !== '0' && await pause();
 
