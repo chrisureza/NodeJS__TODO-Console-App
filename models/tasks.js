@@ -1,3 +1,5 @@
+require('colors');
+
 const Task = require("./task");
 
 class Tasks {
@@ -23,6 +25,19 @@ class Tasks {
 
     loadTasksFromArray(tasks = []) {
         tasks.forEach(task => this._tasksList[task.id] = task);
+    }
+
+    listTasks() {
+        const tasks = this.getTasksList;
+        console.log();
+        tasks.forEach((task, index) => {
+            const { desc, createdAt } = task;
+            const taskIndex = `${index + 1}.`.green;
+            const taskDescription = desc;
+            const taskStatus = `${createdAt ? 'Completed'.green : 'Pending'.red}.`;
+
+            console.log(`${taskIndex} ${taskDescription} :: ${taskStatus}`);
+        });
     }
 }
 

@@ -26,7 +26,7 @@ const main = async () => {
                 console.log('Task added'.green);
                 break;
             case '2':
-                console.log(tasks.getTasksList);
+                tasks.listTasks();
                 break;
         }
 
