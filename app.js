@@ -6,6 +6,7 @@ const {
     readInput,
     tasksListToDelete,
     confirm,
+    tasksListToComplete,
 } = require('./helpers/inquirer');
 const { saveData, readData } = require('./helpers/dataInteractions');
 const Tasks = require('./models/tasks');
@@ -35,6 +36,10 @@ const main = async () => {
                 break;
             case '4':
                 tasks.listPendingTasks();
+                break;
+            case '5':
+                const ids = await tasksListToComplete(tasks.getTasksList);
+                tasks.toggleCompleted(ids);
                 break;
             case '6':
                 const id = await tasksListToDelete(tasks.getTasksList);

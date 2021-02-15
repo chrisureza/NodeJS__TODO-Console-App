@@ -34,10 +34,10 @@ class Tasks {
     }
 
     showTask(task, index) {
-        const { desc, createdAt } = task;
+        const { desc, completedAt } = task;
         const taskIndex = `${index + 1}.`.green;
         const taskDescription = desc;
-        const taskStatus = `${createdAt ? 'Completed'.green : 'Pending'.red}.`;
+        const taskStatus = `${completedAt ? `Completed :: ${completedAt}`.green : 'Pending'.red}.`;
 
         console.log(`${taskIndex} ${taskDescription} :: ${taskStatus}`);
     }
@@ -55,8 +55,8 @@ class Tasks {
         console.log();
         console.log('Completed tasks:\n'.green);
         tasks.forEach((task, index) => {
-            const { createdAt } = task;
-            createdAt && this.showTask(task, index);
+            const { completedAt } = task;
+            completedAt && this.showTask(task, index);
         });
     }
 
@@ -65,8 +65,25 @@ class Tasks {
         console.log();
         console.log('Pending tasks:\n'.red);
         tasks.forEach((task, index) => {
-            const { createdAt } = task;
-            !createdAt && this.showTask(task, index);
+            const { completedAt } = task;
+            !completedAt && this.showTask(task, index);
+        });
+    }
+
+    toggleCompleted(ids = []) {
+        ids.forEach(id => {
+            const task = this._tasksList[id];
+            if (!task.completedAt) {
+                task.completedAt = new Date().toISOString();
+            }
+        });
+
+        this.getTasksList.forEach(task => {
+            const { id } = task;
+            if (!ids.includes(id)) {
+                const task = this._tasksList[id];
+                task.completedAt = null;
+            }
         });
     }
 }
