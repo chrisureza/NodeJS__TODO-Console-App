@@ -28,6 +28,12 @@ const main = async () => {
             case '2':
                 tasks.listTasks();
                 break;
+            case '3':
+                tasks.listCompletedTasks();
+                break;
+            case '4':
+                tasks.listPendingTasks();
+                break;
         }
 
         saveData(JSON.stringify(tasks.getTasksList));

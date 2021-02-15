@@ -27,16 +27,40 @@ class Tasks {
         tasks.forEach(task => this._tasksList[task.id] = task);
     }
 
+    showTask(task, index) {
+        const { desc, createdAt } = task;
+        const taskIndex = `${index + 1}.`.green;
+        const taskDescription = desc;
+        const taskStatus = `${createdAt ? 'Completed'.green : 'Pending'.red}.`;
+
+        console.log(`${taskIndex} ${taskDescription} :: ${taskStatus}`);
+    }
+
     listTasks() {
         const tasks = this.getTasksList;
         console.log();
         tasks.forEach((task, index) => {
-            const { desc, createdAt } = task;
-            const taskIndex = `${index + 1}.`.green;
-            const taskDescription = desc;
-            const taskStatus = `${createdAt ? 'Completed'.green : 'Pending'.red}.`;
+            this.showTask(task, index);
+        });
+    }
 
-            console.log(`${taskIndex} ${taskDescription} :: ${taskStatus}`);
+    listCompletedTasks() {
+        const tasks = this.getTasksList;
+        console.log();
+        console.log('Completed tasks:\n'.green);
+        tasks.forEach((task, index) => {
+            const { createdAt } = task;
+            createdAt && this.showTask(task, index);
+        });
+    }
+
+    listPendingTasks() {
+        const tasks = this.getTasksList;
+        console.log();
+        console.log('Pending tasks:\n'.red);
+        tasks.forEach((task, index) => {
+            const { createdAt } = task;
+            !createdAt && this.showTask(task, index);
         });
     }
 }
